@@ -6,19 +6,7 @@ var morgan = require('morgan');
 //var User = require('./models/user');
 var Mirror = require('./models/mirror');
 var fs = require("fs");
-/*
-var mirror_settings = {
-    newsapi_key: "b715722295c542c98659778f781e70ab",
-    news_category: "all",
-    maps_api_key: "AIzaSyDjV6hQ6W2NYpCoB746pWBIA7",
-    from_lat: 13.8184284,
-    from_lng: 100.5147496,
-    to_lat: 13.8254294,
-    to_lng: 100.5274524
-};
 
-fs.writeFile( "mirror_settings.json", JSON.stringify( mirror_settings ), "utf8" );
-*/
 var keys = require("./keys.json");
 
 // invoke an instance of express application.
