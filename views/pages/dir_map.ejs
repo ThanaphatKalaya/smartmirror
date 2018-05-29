@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	  <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/navbar %>
+    <iframe
+      frameborder="0" width="100%" height="700px"
+      src="https://www.google.com/maps/embed/v1/directions?key=<%= dir_maps_api_key %>
+        &origin=<%= from_lat %>,<%= from_lng %>
+        &destination=<%= to_lat %>,<%= to_lng %>"
+      allowfullscreen>
+    </iframe>
+    <div style="clear: left;">
+      <input type="button" onclick="location.href='/console/maps_edit';" value="Edit Map Locations" />
+    </div>
+  </body>
+</html>

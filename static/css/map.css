@@ -1,0 +1,16 @@
+.map-container {
+  height: 300px;
+  width: 300px;
+  float: left;
+  padding: 5px;
+}
+
+#map_from {
+  height: 100%;
+  width: 100%;
+}
+
+#map_to {
+  height: 100%;
+  width: 100%;
+}

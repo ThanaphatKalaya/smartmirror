@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/navbar %>
+    <div>
+      <div class="map-container">
+        Home's position<br>
+        <div id="map_from"></div>
+      </div>
+      <div class="map-container">
+        Work's position<br>
+        <div id="map_to"></div>
+      </div>
+    </div>
+    <div style="clear: left;">
+      <form id="form" action="" method="post">
+        <input type="hidden" id="from_lat" name="from_lat" value="<%= from_lat %>"> 
+        <input type="hidden" id="from_lng" name="from_lng" value="<%= from_lng %>">
+        <input type="hidden" id="to_lat" name="to_lat" value="<%= to_lat %>"> 
+        <input type="hidden" id="to_lng" name="to_lng" value="<%= to_lng %>">
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <script>
+      function initMap() {
+        var fromMapCenter = new google.maps.LatLng(<%= from_lat %>,<%= from_lng %>);
+        var toMapCenter = new google.maps.LatLng(<%= to_lat %>,<%= to_lng %>);
+        var map_from = new google.maps.Map(document.getElementById('map_from'), {
+          zoom: 16,
+          center: fromMapCenter
+        });
+        var map_to = new google.maps.Map(document.getElementById('map_to'), {
+          zoom: 16,
+          center: toMapCenter
+        });
+
+        var infowindow_from = new google.maps.InfoWindow({
+          content: 'From: ' + fromMapCenter,
+          position: fromMapCenter
+        });
+        infowindow_from.open(map_from);
+
+        var infowindow_to = new google.maps.InfoWindow({
+          content: 'To: ' + toMapCenter,
+          position: toMapCenter
+        });
+        infowindow_to.open(map_to);
+
+        map_from.addListener('center_changed', function() {
+          from_lat = map_from.getCenter().lat().toFixed(7);
+          from_lng = map_from.getCenter().lng().toFixed(7);
+          document.getElementById("from_lat").value = '' + from_lat;
+          document.getElementById("from_lng").value = '' + from_lng;
+          from_center = new google.maps.LatLng(from_lat, from_lng)
+          infowindow_from.setContent('From: ' + from_lat + ',' + from_lng);
+          infowindow_from.setPosition(from_center);
+        });
+
+        map_to.addListener('center_changed', function() {
+          to_lat = map_to.getCenter().lat().toFixed(7);
+          to_lng = map_to.getCenter().lng().toFixed(7);
+          document.getElementById("to_lat").value = '' + to_lat;
+          document.getElementById("to_lng").value = '' + to_lng;
+          to_center = new google.maps.LatLng(to_lat, to_lng)
+          infowindow_to.setContent('To: ' + to_lat + ',' + to_lng);
+          infowindow_to.setPosition(to_center);
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=<%= maps_api_key %>&callback=initMap">
+    </script>
+  </body>
+</html>

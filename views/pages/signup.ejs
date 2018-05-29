@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	  <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/navbar %>
+    <div style="padding: 5px;">
+      <form action="" method="post">
+        <div>
+          <label>mirrorID:</label>
+          <input type="text" name="mirror_id" required><br>
+        </div>
+        <div>
+          <label>password:</label>
+          <input type="password" name="password" required><br>
+          <input type="submit" value="Sign Up">
+        </div>
+      </form>
+    </div>
+    <% include ../partials/alert_massage %>
+  </body>
+</html>

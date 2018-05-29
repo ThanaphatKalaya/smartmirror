@@ -1,0 +1,9 @@
+<ul>
+  <li><a href="/console"><b>Smart Mirror Console</b></a></li>
+  <% if( typeof mirror_id != 'undefined' ) { %>
+    <li style="float: right;"> <a href="/logout">MirrorID: <%= mirror_id %> - Logout</a></li>
+  <% } else { %>
+    <li style="float: right;"><a href="/login">Login</a></li>
+    <li style="float: right;"><a href="/signup">Signup</a></li>
+  <% } %>
+</ul>
